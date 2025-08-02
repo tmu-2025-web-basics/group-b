@@ -1,0 +1,397 @@
+/* サイト全体の基本設定 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background-image: url('images/haikei.png'), url('images/haikei2.png'), url('images/haikei3.png');
+    background-position: center center, center center, center center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: cover, cover, cover;
+}
+
+@media (max-width: 900px) {/*スマホ向け。背景を消す*/
+    body {
+        background-image: none;
+    }
+}
+
+/* 背景画像を画面全体に表示（ドリンクバー画像） */
+.background-container {
+    background-image: url('images/ドリンクバー画像.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 中央の四角いボックス */
+.content-box {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 60vh;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* アイコンを並べるグリッド */
+.icon-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vh; /* ←ここを小さくする */
+    width: 100%;
+    height: 100%;
+}
+
+.icon-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+.icon-link {
+    text-decoration: none;
+}
+
+/* 丸いアイコンのデザイン */
+.icon {
+    width: 10vh;
+    height: 10vh;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 50%;
+     background: #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vh;
+    font-weight: bold;
+    color: white;
+    /*box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.2);*/
+    transition: all 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    /*box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.3);*/
+}
+
+/* 戻るボタンのスタイル */
+.back-btn {
+    position: absolute;
+    top: 18%;
+    right: 50vh;/*ここが難しい*/
+    width: 4vh;
+    height: 4vh;
+    min-width: 20px;
+    min-height: 20px;
+    background: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+    font-weight: bold;
+    text-decoration: none;
+    /*box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.2);*/
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.back-btn:hover {
+    background: #ffffff;
+    transform: scale(1.1);
+}
+
+/* 緑色の四角を横に8つ等間隔で並べるスタイル */
+.square-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48vh;
+    margin: 0 auto;
+    margin-top: 2vh;
+    gap: 0.2vw;
+}
+.green-square {
+    width: 11.5vh;
+    height: 20vh;
+    /*min-width: 16px;
+    min-height: 32px;*/
+    background: #98e86b;
+    border-radius: 2px;
+}
+
+/* 画像表示領域・説明文・閉じるボタンも%/vw/vhで調整 */
+#irohasu-img-box {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#irohasu-img-box img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+}
+#irohasu-comment {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.7);
+    padding: 0.5vw 2vw;
+    border-radius: 12px;
+    font-size: 1vw;
+    color: #222;
+    font-weight: normal;
+    pointer-events: none;
+    z-index: 99;
+    text-align: center;
+}
+#close-irohasu {
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    width: 3vw;
+    height: 3vw;
+    min-width: 32px;
+    min-height: 32px;
+    background: #fff;
+    border: 0.3vw solid #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+}
+#close-irohasu span {
+    color: #222;
+    font-size: 2vw;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* 仮アイコンを横並びで中央配置 */
+.ranking-icon-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    width: 100%;
+    height: 100%;
+}
+.ranking-icon {
+    width: 12vh;
+    height: 12vh;
+    /*min-width: 32px;
+    min-height: 32px;*/
+}
+
+/* ねるね画像を2列で並べるためのグリッド・画像サイズのスタイル */
+.nerune-img-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 2vh;
+}
+.nerune-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+.nerune-img {
+    width: 10vw;
+    height: 10vw;
+    min-width: 40px;
+    min-height: 40px;
+    object-fit: contain;
+}
+
+/* 背景画像レイヤー用 */
+.bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+.bg-haikei {
+    z-index: 1;
+}
+.bg-haikei2 {
+    z-index: 2;
+    animation: float-updown 4s ease-in-out infinite;
+}
+.bg-haikei3 {
+    z-index: 3;
+    animation: float-downup 4s ease-in-out infinite;
+}
+.bg-layer img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+}
+
+.background-container {
+    position: relative;
+    z-index: 10;
+}
+
+/* アニメーションキー */
+@keyframes float-updown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+}
+@keyframes float-downup {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(30px); }
+    100% { transform: translateY(0); }
+}
+
+/*@media (max-width: 768px) {
+    .content-box {
+        width: 90vw;
+        height: 40vh;
+        top: 10%;
+    }
+    .icon {
+        width: 12vw;
+        height: 12vw;
+        font-size: 4vw;
+    }
+    .back-btn {
+        width: 10vw;
+        height: 10vw;
+        font-size: 4vw;
+    }
+    .square-row {
+        gap: 2vw;
+    }
+    .green-square {
+        width: 7vw;
+        height: 10vh;
+    }
+    #irohasu-comment {
+        font-size: 2vw;
+    }
+    #close-irohasu {
+        width: 6vw;
+        height: 6vw;
+    }
+    #close-irohasu span {
+        font-size: 4vw;
+    }
+    .ranking-icon-row {
+        gap: 0.1vw;
+    }
+    .ranking-icon {
+        width: 12vw;
+        height: 12vw;
+    }
+    .nerune-img-grid {
+        gap: 1vh;
+    }
+    .nerune-row {
+        gap: 1vw;
+    }
+    .nerune-img {
+        width: 16vw;
+        height: 16vw;
+    }
+    .icon-grid {
+        gap: 1vh;
+    }
+    .icon-row {
+        gap: 2vw;
+    }
+}
+@media (max-width: 480px) {
+    .content-box {
+        width: 98vw;
+        height: 50vh;
+        top: 5%;
+    }
+    .icon {
+        width: 16vw;
+        height: 16vw;
+        font-size: 6vw;
+    }
+    .back-btn {
+        width: 14vw;
+        height: 14vw;
+        font-size: 6vw;
+        top: 2vw;
+        left: 2vw;
+    }
+    .square-row {
+        gap: 1vw;
+    }
+    .green-square {
+        width: 10vw;
+        height: 8vh;
+    }
+    #irohasu-comment {
+        font-size: 3vw;
+    }
+    #close-irohasu {
+        width: 10vw;
+        height: 10vw;
+        top: 2vw;
+        right: 2vw;
+    }
+    #close-irohasu span {
+        font-size: 6vw;
+    }
+    .ranking-icon-row {
+        gap: 0.1vw;
+    }
+    .ranking-icon {
+        width: 10vw;
+        height: 10vw;
+    }
+    .nerune-img-grid {
+        gap: 0.5vh;
+    }
+    .nerune-row {
+        gap: 0.5vw;
+    }
+    .nerune-img {
+        width: 22vw;
+        height: 22vw;
+    }
+    .icon-grid {
+        gap: 0.5vh;
+    }
+    .icon-row {
+        gap: 1vw;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水比較ページ</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="background-container">
+        <!-- 必要なコンテンツをここに記載 -->
+        <div class="content-box">
+            <div class="square-row">
+                <div class="green-square" id="btn-1"></div>
+                <div class="green-square" id="btn-2"></div>
+                <div class="green-square" id="btn-3"></div>
+                <div class="green-square" id="btn-4"></div>
+                <div class="green-square" id="btn-5"></div>
+                <div class="green-square" id="btn-6"></div>
+                <div class="green-square" id="btn-7"></div>
+                <div class="green-square" id="btn-8"></div>
+            </div>
+            <!-- 表示領域（画像＋文章 or 文章のみ） -->
+            <div id="info-box" style="display:none; justify-content:center; align-items:center; width:100%; height:100%; position:absolute; top:0; left:0;">
+                <img id="info-img" src="../images/irohasu-setsumei.png" alt="いろはす説明" style="max-width:100%; max-height:100%; object-fit:contain; display:none;">
+                <div id="info-comment" style="position:absolute; bottom:32px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.7); padding:6px 18px; border-radius:12px; font-size:0.85rem; color:#222; font-weight:normal; pointer-events:none; z-index:99; text-align:center;">
+                </div>
+                <div id="close-info" style="position:absolute; top:20px; right:20px; width:48px; height:48px; background:#fff; border:3px solid #222; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:100;">
+                    <span style="color:#222; font-size:2rem; font-weight:bold; user-select:none;">×</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="../index.html" class="back-btn">←</a>
+    <script>
+    // 各説明文
+    const comments = [
+        "自販機によくあるミネラルウォーター。王道。",
+        "スーパーによくあるミ2.ネラルウォーター。始まりはウイスキーだそう。",
+        "南アルプスにそっくりさんだが実は2021年発売の新参者。実力やいかに。",
+        "アメリカからのミネラルウォーター。でも日本の会社が売ってるらしい。",
+        "フランスからのミネラルウォーター。紹介する中では一番硬水。",
+        "送料込み2000円超えの超高級品。2000円の…水…？？？",
+        "わりと好みが分かれる炭酸水。文章担当は好きです。",
+        "水って書いてあるから水なんです。なにこれ？"
+    ];
+
+    // 各ボタンにクリックイベント
+    for(let i=1; i<=8; i++){
+        document.getElementById('btn-'+i).onclick = function(){
+            document.getElementById('info-box').style.display = 'flex';
+            document.getElementById('info-comment').textContent = comments[i-1];
+            // 1番目だけ画像表示
+            if(i === 1){
+                document.getElementById('info-img').style.display = 'block';
+            }else{
+                document.getElementById('info-img').style.display = 'none';
+            }
+        };
+    }
+    // ×アイコンで閉じる
+    document.getElementById('close-info').onclick = function(){
+        document.getElementById('info-box').style.display = 'none';
+    };
+    </script>
+</body>
+</html>
