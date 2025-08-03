@@ -10,7 +10,8 @@ body {
     background-image: url('images/haikei.png'), url('images/haikei2.png'), url('images/haikei3.png'), url('images/haikei4.png');
     background-position: center center, center center, center center, center center;
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    background-size: cover, cover, cover, cover;
+    background-size: contain, 100% auto, 100% auto, contain;
+    background-attachment: fixed, fixed, fixed, fixed;
 }
 
 
@@ -356,9 +357,18 @@ body {
 }
 .bg-layer img {
     width: 100vw;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     object-fit: cover;
+    object-position: center;
     display: block;
+}
+.bg-layer.bg-haikei2 img,
+.bg-layer.bg-haikei3 img {
+    width: 100vw;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
 }
 
 .background-container {
@@ -385,15 +395,15 @@ body {
 /* アニメーションキー */
 @keyframes float-haikei2 {
     0% { transform: translateY(0); }
-    40% { transform: translateY(-20px); }
-    60% { transform: translateY(-20px); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
 }
 
 @keyframes float-haikei3 {
     0% { transform: translateY(0); }
-    30% { transform: translateY(-15px); }
-    70% { transform: translateY(15px); }
+    30% { transform: translateY(-8px); }
+    70% { transform: translateY(8px); }
     100% { transform: translateY(0); }
 }
 
@@ -539,4 +549,3 @@ body {
     bottom: 5vh;
 }
 /* 南北比較用ここまで */
-
