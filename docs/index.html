@@ -22,6 +22,18 @@
     <div class="bg-layer bg-haikei4">
         <img src="images/haikei4.png" alt="背景4">
     </div>
+    <!-- 波アニメーション要素 -->
+    <div id="wave-transition" style="display:none; opacity:0; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:1000; pointer-events:none;">
+        <svg id="wave-svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <mask id="wave-mask">
+                    <rect width="100" height="100" fill="white"/>
+                    <path id="wave-path" d="" fill="black"/>
+                </mask>
+            </defs>
+            <rect width="100" height="100" fill="#7ed6f7" mask="url(#wave-mask)"/>
+        </svg>
+    </div>
     <!-- ここから既存のコンテンツ -->
     <!-- 背景画像を表示するコンテナ -->
     <div class="background-container">
@@ -64,9 +76,10 @@
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
-
 </html>
+
 
 
 
