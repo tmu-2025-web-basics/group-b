@@ -130,4 +130,78 @@ function playWaveAnimationAndNavigate(targetUrl) {
 // 例：ページ読み込み時の処理
 // window.onload = function() {
 //     // 初期化処理など
+
 // }
+
+// ページ読み込み直後に波アニメーションを開始
+    startWaveAnimationOnLoad();
+
+
+// ページ読み込み直後に波アニメーションを開始する関数
+function startWaveAnimationOnLoad() {
+    const wave = document.getElementById('wave-transition');
+    const wavePath = document.getElementById('wave-path');
+    if (!wave || !wavePath) return;
+
+    // 各フレームの波形（Y座標のみ）
+    const frames = [
+        [100, 100, 100], // start
+        [80, 80, 80],
+        [60, 40, 60],
+        [30, 0, 30],
+        [0, -40, 0]      // end
+    ];
+
+    // 線形補間
+    function lerp(a, b, t) {
+        return a + (b - a) * t;
+    }
+
+    let frame = 0;
+    let progress = 0;
+    const steps = 20;
+
+    function animate() {
+        if (frame >= frames.length - 1) {
+            // アニメーション終了
+            wave.style.opacity = 0;
+            setTimeout(() => { wave.style.display = 'none'; }, 500);
+            return;
+        }
+        progress++;
+        const t = progress / steps;
+        
+        // 全体の進行度を計算（0から1）
+        const totalProgress = (frame + t) / (frames.length - 1);
+        
+        // 50%になってから透明度を下げる
+        let opacity = 1;
+        if (totalProgress >= 0.5) {
+            const fadeProgress = (totalProgress - 0.5) / 0.5;
+            opacity = 1 - fadeProgress;
+        }
+        wave.style.opacity = opacity;
+        
+        // 各制御点を補間
+        const y0 = lerp(frames[frame][0], frames[frame+1][0], t);
+        const y1 = lerp(frames[frame][1], frames[frame+1][1], t);
+        const y2 = lerp(frames[frame][2], frames[frame+1][2], t);
+        // SVGパスを生成
+        const d = `M0,${y0} Q25,${y1} 50,${y2} T100,${y0} V100 H0 Z`;
+        wavePath.setAttribute('d', d);
+
+        if (progress < steps) {
+            requestAnimationFrame(animate);
+        } else {
+            frame++;
+            progress = 0;
+            requestAnimationFrame(animate);
+        }
+    }
+
+    // 波アニメーション開始
+    wave.style.display = 'block';
+    wave.style.opacity = 1;
+    wavePath.setAttribute('d', 'M0,100 Q25,100 50,100 T100,100 V100 H0 Z');
+    animate();
+}
